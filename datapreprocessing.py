@@ -4,7 +4,7 @@ import numpy as np
 import os
 import time
 
-data=pd.read_csv('final_taylor_swift_lyrics.tsv', sep='\t').drop(columns=['index'])
+data=pd.read_csv('final_taylor_swift_lyrics.tsv',encoding='utf-8', sep='\t').drop(columns=['index'])
 data.album.drop_duplicates().tolist()
 k=0
 Not_good_words=['Live','Genius','Demo','folklore']
@@ -46,7 +46,7 @@ for i in IND:
     new_d=data[i+1:i+1+q]
     CHORUSES.append(new_d.lyric.tolist())
 CHORUSES.index(["I didn't bring her up so they could cut her down\t8\tNone\n197\tUnreleased Songs\tBrought Up That Way \tI didn't bring her here so they could shut her out\t9\tNone\n197\tUnreleased Songs\tBrought Up That Way \tI live my whole damn life to see that little girl's smile\t10\tNone\n197\tUnreleased Songs\tBrought Up That Way \tSo why are tears pouring down that sweet face?\t11\tNone\n197\tUnreleased Songs\tBrought Up That Way \tShe wasn't brought up that way"])
-CHORUSES=np.array(CHORUSES) 
+CHORUSES=np.array(CHORUSES, dtype=object) 
 CHORUSES=np.delete(CHORUSES,[121,])
 CHORUSES=CHORUSES.tolist()
 TERM=''
@@ -54,6 +54,6 @@ for c in range(len(CHORUSES)):
     for i in range(len(CHORUSES[c])):
         TERM= TERM+ CHORUSES[c][i]+ ' \n '
 TERM
-f = open("choruses.txt", "a")
+f = open("choruses.txt", "w", encoding="utf-8")
 f.write(TERM)
 f.close()

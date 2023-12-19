@@ -2,9 +2,8 @@ import tensorflow as tf
 import pandas as pd
 import numpy as np
 import os
-import time
 
-data=pd.read_csv('final_taylor_swift_lyrics.tsv',sep='\t')
+data=pd.read_csv('final_taylor_swift_lyrics.tsv',encoding='utf-8', sep='\t')
 START_P=data[data.line_number==0].index.tolist()
 TERM=[]
 for i in range(len(START_P)-1):
@@ -16,7 +15,7 @@ for i in range(len(START_P)-1):
 new_term=TERM[0]+' \n'
 for t in TERM:
     new_term=new_term+t+' \n'
-f = open("fuke.txt", "a")
+f = open("fuke.txt", "a", encoding="utf-8")
 f.write("Now the file has more content!")
 f.close()
 text = open('choruses.txt', 'rb').read().decode(encoding='utf-8')
@@ -139,6 +138,9 @@ model.load_weights(tf.train.latest_checkpoint(checkpoint_dir))
 model.build(tf.TensorShape([1, None]))
 
 model.summary() 
+
+# Save model
+model.save('nas_model_stihovi.h5')
 
 def generate_text(model, start_string,t):
     # Evaluation step (generating text using the learned model)
