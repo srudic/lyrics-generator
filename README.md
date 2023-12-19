@@ -12,4 +12,4 @@ The thesis assignment is to explain what a neural network is and how it can crea
 
 ### Technologies
 
-**Python3** and moduls: **TensorFlow**, **Pandas**, **NumPy**, os module and time module was used.
+**Python3** and moduls: **TensorFlow**, **Pandas**, **NumPy**, os module and time module were used.
